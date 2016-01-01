@@ -4,6 +4,10 @@
 	Shorted path in Graph will only work
 	1. BFS is perfomed with root as start element
 	2. If it is Unweighted graph
+	
+	Time Complexity = O(V+E) where V is vertices and E are edges if it is implemented using adjacency list
+	Time Complexity = O(V^2) where V is vertices if it is implemented as adjacency Matric
+	For Dense Graph we can say Complexity is O(E)
 */
 void Main()
 {
@@ -12,7 +16,7 @@ void Main()
 	
 	g.CreateGraph(6, 7, edgeData);
 	
-	var parents = g.BreadthFirstSearch(1);	
+	var parents = g.BreadthFirstSearch(2);	
 	
 	FindShortestPath(1, 4, parents);
 }
@@ -187,4 +191,3 @@ public class Graph
 		return parent;
 	}
 }
-

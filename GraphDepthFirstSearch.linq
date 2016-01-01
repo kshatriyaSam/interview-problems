@@ -1,9 +1,13 @@
 <Query Kind="Program" />
 
+/*
+	Time Complexity = O(V+E) where V is vertices and E are edges if it is implemented using adjacency list
+	Time Complexity = O(V^2) where V is vertices if it is implemented as adjacency Matric
+*/
 void Main()
 {
 	Graph g = new Graph(7, false);
-	var edgeData = new int[,] {	{1,6}, {1,2}, {1,5}, {2,5}, {2,3}, {3,4}, {4,5}};
+	var edgeData = new int[,] {	 {1,2}, {1,5}, {2,5}, {2,3}, {3,4}, {4,5}, {1,6}};
 	
 	g.CreateGraph(6, 7, edgeData);
 	
@@ -28,6 +32,7 @@ public class Graph
 	readonly int MaxVertices;
 	
 	int time;
+	bool finished;
 	
 	public Graph(int vertices, bool isDirected)
 	{
@@ -124,6 +129,8 @@ public class Graph
 	
 	void DepthFirstSearchUtil(int startValue, bool[] discovered, bool[] processed, int[] parent, int[] entryTime, int[] exitTime)
 	{
+		if (finished) return;
+		
 		discovered[startValue] = true;
 		time = time + 1;
 		entryTime[startValue] = time;
@@ -136,11 +143,20 @@ public class Graph
 			if (discovered[successor] == false)
 			{
 				parent[successor] = startValue;
+				Console.WriteLine("Edge1 {0} -> {1}", startValue, successor);
 				DepthFirstSearchUtil(successor, discovered, processed, parent, entryTime, exitTime);
 			}
 			else if((!processed[successor] && parent[successor] != startValue) || this.isDirected)
 			{
-				Console.WriteLine("Edge {0} -> {1}", startValue, successor);
+				Console.WriteLine("Edge2 {0} -> {1}", startValue, successor);
+				
+				/*
+				if(discovered[successor] && parent[startValue]!= successor)
+				{
+					Console.WriteLine("Cycle {0} -> {1}", successor, startValue);
+					finished = true;
+				}*/
+			
 			}
 			
 			p = p.Next;
