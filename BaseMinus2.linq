@@ -14,7 +14,7 @@
 //1/-2 = 0 - 1
 void Main()
 {
-	string baseMinus2rep = ConverttoBaseMinus2(11);
+	string baseMinus2rep = ConverttoBaseMinus2(6);
 	baseMinus2rep.Dump();
 }
 

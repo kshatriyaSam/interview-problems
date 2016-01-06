@@ -39,7 +39,7 @@ void BinaryTreePathInternal(List<string> result, StringBuilder temp, TreeNode ro
    // we have reached a leaf node, time to add to our result
    if(root.left == null && root.right == null)
    {
-   		// COPY THE temp String to new variable, so that we can backtrack
+   	   // COPY THE temp String to new variable, so that we can backtrack
        var substr = new StringBuilder(temp.ToString());
        
        if(temp.Length == 0)
