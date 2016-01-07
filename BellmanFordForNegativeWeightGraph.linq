@@ -56,6 +56,65 @@ public class Graph
 		this.InitializeGraph();		
 	}
 	
+	/*
+		Run a loop from each Vertice to all Outgoing Vertices -1 (Please note).
+		If (distance till current + Weight of Edge < distance at Distance)
+		 	then we have found a shorter router and update.
+		
+		if even after performing all Vertices search, the last Vertice search still indicates 
+		a shorter Path, then the graph contains a Negative Cycle
+	*/
+	public void BellmanFord(int key)
+	{	
+		int[] distance = new int[this.MaxVertices];
+		int[] shortParent = new int[this.MaxVertices];
+		
+		// initialize the array;
+		for(int i = 0; i < this.MaxVertices;i++)
+		{
+			distance[i] = Int32.MaxValue;
+			shortParent[i] = -1;
+		}
+		
+		distance[0] = 0;
+		for(int i = 0; i < this.MaxVertices -1;i++)
+		{
+			var p = this.EdgeNodes[i];
+			for(int j = 0; j < this.EdgesCount[i];j++)
+			{
+				int dest = p.Data;
+				int weight = p.Weight;
+				if(distance[i] != Int32.MaxValue && distance[i] + weight < distance[dest])
+				{
+					distance[dest] = distance[i] + weight;
+					shortParent[dest] = i;
+				}
+				
+				p = p.Next;
+			}
+		}
+		
+		var lastVertice = this.EdgeNodes[this.MaxVertices -1];
+		for(int j = 0; j < this.EdgesCount[this.MaxVertices -1]; j++)
+		{
+			int dest = lastVertice.Data;
+			int weight = lastVertice.Weight;
+			if(distance[j] != Int32.MaxValue && distance[j] + weight < distance[dest])
+			{
+				Console.WriteLine("the Graph contains a Negative Cycle");
+			}
+			
+			lastVertice = lastVertice.Next;			
+		}
+		
+		// Print distance and Parents
+		for(int i = 0; i< this.MaxVertices; i++)
+		{
+			Console.WriteLine("Shorted Route to Vertex: {0} is {1} with Nearest Parent :{2}", i, distance[i], shortParent[i]);
+		}	
+		
+	}
+	
 	void InitializeGraph()
 	{
 		for(int i = 0; i < this.MaxVertices; i++)
@@ -116,64 +175,5 @@ public class Graph
 				Console.WriteLine("");
 			}			
 		}
-	}
-	
-	/*
-		Run a loop from each Vertice to all Outgoing Vertices -1 (Please note).
-		If (distance till current + Weight of Edge < distance at Distance)
-		 	then we have found a shorter router and update.
-		
-		if even after performing all Vertices search, the last Vertice search still indicates 
-		a shorter Path, then the graph contains a Negative Cycle
-	*/
-	public void BellmanFord(int key)
-	{	
-		int[] distance = new int[this.MaxVertices];
-		int[] shortParent = new int[this.MaxVertices];
-		
-		// initialize the array;
-		for(int i = 0; i < this.MaxVertices;i++)
-		{
-			distance[i] = Int32.MaxValue;
-			shortParent[i] = -1;
-		}
-		
-		distance[0] = 0;
-		for(int i = 0; i < this.MaxVertices -1;i++)
-		{
-			var p = this.EdgeNodes[i];
-			for(int j = 0; j < this.EdgesCount[i];j++)
-			{
-				int dest = p.Data;
-				int weight = p.Weight;
-				if(distance[i] != Int32.MaxValue && distance[i] + weight < distance[dest])
-				{
-					distance[dest] = distance[i] + weight;
-					shortParent[dest] = i;
-				}
-				
-				p = p.Next;
-			}
-		}
-		
-		var lastVertice = this.EdgeNodes[this.MaxVertices -1];
-		for(int j = 0; j < this.EdgesCount[this.MaxVertices -1]; j++)
-		{
-			int dest = lastVertice.Data;
-			int weight = lastVertice.Weight;
-			if(distance[j] != Int32.MaxValue && distance[j] + weight < distance[dest])
-			{
-				Console.WriteLine("the Graph contains a Negative Cycle");
-			}
-			
-			lastVertice = lastVertice.Next;			
-		}
-		
-		// Print distance and Parents
-		for(int i = 0; i< this.MaxVertices; i++)
-		{
-			Console.WriteLine("Shorted Route to Vertex: {0} is {1} with Nearest Parent :{2}", i, distance[i], shortParent[i]);
-		}	
-		
 	}
 }
