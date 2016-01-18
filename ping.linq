@@ -53,7 +53,7 @@ void Main()
             {
                 using (var request = new HttpRequestMessage(HttpMethod.Get, requestUri))
                 {
-					request.Headers.Add("Ocp-Apim-Subscription-Key","55eecbeb1adc4b679f31397ed376d186");
+					request.Headers.Add("Ocp-Apim-Subscription-Key","");
 					client.Timeout = TimeSpan.FromSeconds(1);
                     var response = await client.SendAsync(request);
                     if (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.Redirect)
