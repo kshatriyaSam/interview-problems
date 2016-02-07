@@ -5,7 +5,7 @@
 */
 void Main()
 {
-	Console.WriteLine(GCD(35,25));
+	Console.WriteLine(GCD(25,35));
 }
 
 /*

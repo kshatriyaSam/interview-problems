@@ -14,6 +14,7 @@ Return "acdb"
 void Main()
 {
 	var result = RemoveDuplicateLetters("abacb");
+	Console.WriteLine(result);
 }
 
 // Define other methods and classes here
