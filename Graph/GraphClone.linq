@@ -143,8 +143,6 @@ public class Node
 		this.Name = name;
 		this.Neighbours = new List<Node>();
 	}
-	
-
 }
 
 public Node Clone(Node inputNode)

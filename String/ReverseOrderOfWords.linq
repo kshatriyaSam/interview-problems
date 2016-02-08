@@ -1,61 +1,41 @@
 <Query Kind="Program" />
 
-//  reverse the order of the words (not the characters) in a string of length n in with constant extra space in linear time
-// Approach:
-// Reverse individual strings, then reverse the entire string
+/*
+Given an input string, reverse the string word by word. 
+
+For example,
+ Given s = "the sky is blue",
+ return "blue is sky the". 
+
+*/
 void Main()
 {
 	string reverseWords = "he    lo";
 	
-	char[] stringToReverse = reverseWords.ToCharArray();
-	ReverseWord(stringToReverse);
+	ReverseWords(reverseWords);
 	
-	RotateSubString(stringToReverse, 0, stringToReverse.Length -1);
-	Console.WriteLine(string.Join("", stringToReverse));
-	
-	string resultString = "you are how hello";
-	
+	Console.WriteLine(reverseWords);
 }
 
-static void ReverseWord(char[] stringToReverse)
-{
-	int pos = 0;
-	
-	while(pos != stringToReverse.Length && stringToReverse[pos] == ' ')
-	{
-		pos++;
-	}
-	
-	int start = pos;
-	while(pos <= stringToReverse.Length)
-	{
-	  if(pos == stringToReverse.Length || stringToReverse[pos] == ' ')
-	  {
-	    RotateSubString(stringToReverse, start, pos -1);
-		while(pos != stringToReverse.Length && stringToReverse[pos] == ' ')
-		{
-		  pos++;
-		}
-		
-		start = pos;
-	  }
-	  
-	  pos++;
-	}	
-}
-
-static void RotateSubString(char[] stringArray, int startPos, int endPos)
-{
-	int pos = 0;
-	int lengthOfSub = endPos - startPos;
-	
-	while(pos <= (lengthOfSub / 2))
-	{
-	  char tempChar = stringArray[startPos + pos];
-	  stringArray[startPos + pos] = stringArray[endPos - pos];
-	  stringArray[endPos - pos] = tempChar;
-	  pos++;
-	}
-}
+	public string ReverseWords(string s) 
+    {
+        var builder = new StringBuilder();
+        
+        int end = s.Length;
+        for(int i = s.Length - 1; i >= 0; i--)
+        {
+            if(s[i] == ' ') 
+            {
+                end = i;
+            }
+            else if(i == 0 || s[i - 1] == ' ')
+            {
+                if(builder.Length != 0) builder.Append(" ");
+                builder.Append(s.Substring(i, end - i));
+            }
+        }
+        
+        return builder.ToString();
+    }
 
 // Define other methods and classes here
