@@ -7,6 +7,16 @@ void Main()
 	var decodeResult = Decode(encodeData);
 	decodeResult.Dump();
 }
+/*
+Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.
+*/
+/*
+LEARNINGS:
+1.We used the Length prefix approach which is used by ProtoBuf and Redis
+2. The number of length  character can be more than 1, so we need a delimiter for that too.
+3. Convert.ToInt32("5") returns 5, but Convert.ToInt32('5') return 53.
+4. Be careful when accounting for all the delimiting characters you put in.
+*/
 
 public string Encode(IList<string> strs)
 {

@@ -16,6 +16,13 @@ void Main()
     Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without duplicates.
 
 */
+
+/*
+Learnings
+1. HashSet<int>.Add returns a boolean result, if the addition was succesful or the element already exists
+2. Remember to initialize the new Column and Grid HashSet, if they don't already exist
+3. FindGridIndex was a most critical function.
+*/
 // r=0,c=0 ->grid=0
 // r=0,c=5 ->grid=1
 // r=4,c=8 ->grid=5
