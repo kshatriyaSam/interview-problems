@@ -28,11 +28,13 @@ public bool WordBreak(string s, IList<string> wordDict) {
 	   {
            if(f[j] && wordDict.Contains(s.Substring(j, i - j)))
 		   {
+		   	   s.Substring(j, i-j).Dump();
                f[i] = true;
                break;
            }
        }
    }
    
+   f.Dump();
    return f[s.Length];
 }

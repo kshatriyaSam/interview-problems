@@ -2,7 +2,7 @@
 
 void Main()
 {
-	int[] inputArray = {4,5,2,8,9,1,4,3};
+	int[] inputArray = {7,3,4,5,8,1,13,2,9,6};
 	
 	Tree t = new Tree();
 	var root = t.CreateBTree(inputArray);

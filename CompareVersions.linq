@@ -67,7 +67,7 @@ public int CompareVersion(string version1, string version2) {
                 var data1 = Convert.ToInt32(version1Array[k]);
                 if (data1 != 0)
                 {
-                    return 1;
+                    return -1;
                 }
             }
         }
