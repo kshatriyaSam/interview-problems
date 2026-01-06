@@ -29,7 +29,7 @@ return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
         if(root == null) return false;
         
 		// if its a leaf node and sum has dropped to zero after negating this, return true.
-        if(root.left == null && root.right == null && (sum - root.val) != 0) return false;
+        if(root.left == null && root.right == null && (sum -root.val) != 0) return false;
         if(root.left == null && root.right == null && (sum -root.val) == 0) return true;
         
 		// else follow the inorder traversal

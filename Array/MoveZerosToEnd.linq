@@ -12,6 +12,8 @@ Minimize the total number of operations.
 void Main()
 {
 	MoveZeroes(new int[] {0,1,0,3,12});
+	
+	char.ToLower('c').Dump();
 }
 
 // Define other methods and classes here

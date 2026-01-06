@@ -40,7 +40,7 @@ arrSum = ∑ arr[i]
 
 public static int MaxSumByRotation(int[] arr)
 {
-	int arrSum =0
+	int arrSum =0;
 	for (int i = 0; i < arr.Length; i++)
 	{
 		arrSum += arr[i];	
